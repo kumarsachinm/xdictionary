@@ -14,12 +14,12 @@ function App() {
   ];
 
   const [answer, setAnswer] = useState("");
-  const [input, setInput] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
     const foundWord = dictionary.find(
-      (item) => item.word.toLowerCase() === input.toLowerCase()
+      (item) => item.word.toLowerCase() === searchText.toLowerCase()
     );
     if (foundWord) {
       setAnswer(foundWord.meaning);
@@ -36,10 +36,12 @@ function App() {
         <input
           type="text"
           placeholder="Search for a word..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
-        <input type="submit" onClick={handleSearch} value="Search" />
+        <button type="submit" onClick={handleSearch}>
+          Search
+        </button>
       </form>
       <h4>Definition:</h4>
       <p>{answer}</p>
